@@ -10,12 +10,18 @@ ORGANIZATIONS = (
 class Category(models.Model):
     name = models.CharField(max_length=32, verbose_name='Category name')
 
+    def __str__(self):
+        return self.name
+
 
 class Institution(models.Model):
-    name = name = models.CharField(max_length=32, verbose_name='Institution name')
+    name = models.CharField(max_length=32, verbose_name='Institution name')
     description = models.CharField(max_length=100, verbose_name='Description')
     type = models.CharField(max_length=32, choices=ORGANIZATIONS, default='1')
     categories = models.ManyToManyField(Category)
+
+    def __str__(self):
+        return self.name
 
 
 class Donation(models.Model):
@@ -29,4 +35,4 @@ class Donation(models.Model):
     pick_up_date = models.DateField()
     pick_uP_time = models.TimeField()
     pick_up_comment = models.TextField()
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, default='Null')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, default=None)
