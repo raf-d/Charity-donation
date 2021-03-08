@@ -4,6 +4,7 @@ from .models import Category, Donation, Institution
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class LandingPage(View):
@@ -24,9 +25,16 @@ class LandingPage(View):
                                               })
 
 
-class AddDonation(View):
+class AddDonation(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'form.html')
+        # categories = Category.objects.all()
+        categories = Category.objects.all()
+        # print(categories)
+        institutions = set(Institution.objects.filter(categories__in=categories))
+        # print('Institutions ->', set(institutions))
+        return render(request, 'form.html', {'categories': categories,
+                                             'institutions': institutions
+                                             })
 
 
 class Login(View):
