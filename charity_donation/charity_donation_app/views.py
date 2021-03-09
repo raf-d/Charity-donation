@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from .models import Category, Donation, Institution
 from .forms import RegisterForm, LoginForm
@@ -45,22 +46,26 @@ class Login(View):
     def post(self, request):
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
+            user = self.authorise(form)
             if user:
                 login(request, user)
-                return redirect('/')
+                return redirect(reverse('home'))
             else:
-                return redirect('/register')
+                return redirect(reverse('register'))
         else:
             return render(request, 'login.html', {'form': form})
+
+    def authorise(self, form):
+        username = form.cleaned_data['email']
+        password = form.cleaned_data['password']
+        user = authenticate(username=username, password=password)
+        return user
 
 
 class Logout(View):
     def get(self, request):
         logout(request)
-        return redirect('/')
+        return redirect(reverse('home'))
 
 
 class Register(View):
@@ -77,7 +82,7 @@ class Register(View):
                                      first_name=form.cleaned_data['name'],
                                      last_name=form.cleaned_data['surname']
                                      )
-            return redirect('/login')
+            return redirect(reverse('login'))
         else:
             return render(request, 'register.html', {'form': form})
 

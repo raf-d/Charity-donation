@@ -2,22 +2,8 @@
 {% block content %}
 {% load static %}
 <header class="header--main-page">
-    {% include 'login_part2.html' %}
-<!--    <nav class="container container&#45;&#45;70">-->
-<!--        <ul class="nav&#45;&#45;actions">-->
-<!--            <li><a href="/login" class="btn btn&#45;&#45;small btn&#45;&#45;without-border">Zaloguj</a></li>-->
-<!--            <li><a href="/register" class="btn btn&#45;&#45;small btn&#45;&#45;highlighted">Załóż konto</a></li>-->
-<!--        </ul>-->
 
-<!--        <ul>-->
-<!--            <li><a href="" class="btn btn&#45;&#45;without-border active">Start</a></li>-->
-<!--            <li><a href="#steps" class="btn btn&#45;&#45;without-border">O co chodzi?</a></li>-->
-<!--            <li><a href="#about-us" class="btn btn&#45;&#45;without-border">O nas</a></li>-->
-<!--            <li><a href="#help" class="btn btn&#45;&#45;without-border">Fundacje i organizacje</a></li>-->
-<!--            <li><a href="add-donation" class="btn btn&#45;&#45;without-border">Przekaż dary</a></li>-->
-<!--            <li><a href="/#contact" class="btn btn&#45;&#45;without-border">Kontakt</a></li>-->
-<!--        </ul>-->
-<!--    </nav>-->
+    {% include 'login_part2.html' %}
 
     <div class="slogan container container--90">
         <div class="slogan--item">
@@ -74,7 +60,7 @@
         </div>
     </div>
 
-    <a href="/register" class="btn btn--large">Załóż konto</a>
+    <a href="{% url 'register' %}" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section id="about-us" class="about-us">
@@ -84,7 +70,7 @@
             optio esse quisquam illo omnis.</p>
         <img src="images/signature.svg" class="about-us--text-signature" alt="Signature"/>
     </div>
-    <div class="about-us--image"><img src="images/about-us.jpg" alt="People in circle"/></div>
+    <div class="about-us--image"><img src="{% static 'images/about-us.jpg' %}" alt="People in circle"/></div>
 </section>
 
 <section id="help" class="help">

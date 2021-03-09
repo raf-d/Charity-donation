@@ -19,9 +19,9 @@ from charity_donation_app.views import LandingPage, AddDonation, Login, Logout, 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', LandingPage.as_view()),
-    path('add-donation/', AddDonation.as_view()),
-    path('login/', Login.as_view()),
-    path('logout/', Logout.as_view()),
-    path('register/', Register.as_view()),
+    path('', LandingPage.as_view(), name='home'),
+    path('add-donation/', AddDonation.as_view(), name='donation'),
+    path('login/', Login.as_view(), name='login'),
+    path('logout/', Logout.as_view(), name='logout'),
+    path('register/', Register.as_view(), name='register'),
 ]
