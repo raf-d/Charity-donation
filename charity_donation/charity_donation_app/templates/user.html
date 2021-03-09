@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<header>
+{% include 'login_part2.html' %}
+</header>
+
+<section>
+    <h2>Profil użytkownika: {{ user.first_name }} {{ user.last_name }}</h2>
+    <h3>
+        <ul>
+            <li>Imię: {{ user.first_name }}</li>
+            <li>Nazwisko: {{ user.last_name }}</li>
+            <li>Adres e-mail: {{ user.email }}</li>
+        </ul>
+    </h3>
+    <h2>Przekazane dary:</h2>
+    <h3>
+        {% for donation in donations %}
+        <ul>
+            <li>Ilość worków: {{ donation.quantity }}</li>
+            <li>Wsparta organizacja: {{ donation.institution }}</li>
+            <li>Kategorie: {% for cat in donation.categories.all %}
+                {{ cat.name }},
+                {% endfor %}
+            </li>
+        </ul>
+    {% endfor %}
+    </h3>
+</section>
+
+{% endblock %}

@@ -87,3 +87,9 @@ class Register(View):
             return render(request, 'register.html', {'form': form})
 
 
+class UserView(View):
+    def get(self, request, user_id):
+        user = User.objects.get(id=user_id)
+        donations = Donation.objects.filter(user=user_id)
+        return render(request, 'user.html', {'user': user, 'donations': donations})
+
