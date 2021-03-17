@@ -197,9 +197,43 @@ document.addEventListener("DOMContentLoaded", function() {
         btn.addEventListener("click", e => {
           e.preventDefault();
           this.currentStep++;
+          if(this.currentStep === 3){
+            let cats = document.querySelectorAll('.category');
+            console.log(cats);
+            let zaznaczone_cats = [];
+            cats.forEach(cat => {
+              if(cat.checked){
+                zaznaczone_cats.push(cat.value)
+              }
+            })
+            console.log(zaznaczone_cats)
+          }
           this.updateForm();
+
         });
       });
+
+      // testing
+      let things = []
+
+      function doalert() {
+        if (this.checked) {
+          things.push(this.value)
+          console.log(things)
+        } else {
+          let index = things.indexOf(this.value)
+          if(index > -1) {
+            things.splice(index, 1)
+          }
+          console.log(things)
+        }
+      }
+
+      let things_list = document.querySelectorAll('.category-things')
+
+      things_list.forEach(thing => {
+        thing.addEventListener('change', doalert)
+      })
 
       // Previous step
       this.$prev.forEach(btn => {

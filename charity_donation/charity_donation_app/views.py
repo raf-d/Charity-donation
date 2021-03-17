@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
+
+from .mixins import AjaxFormMixin
 from .models import Category, Donation, Institution
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
@@ -93,3 +95,14 @@ class UserView(View):
         donations = Donation.objects.filter(user=user_id)
         return render(request, 'user.html', {'user': user, 'donations': donations})
 
+
+# class AddDonation(LoginRequiredMixin, AjaxFormMixin, View):
+#     def get(self, request):
+#         # categories = Category.objects.all()
+#         categories = Category.objects.all()
+#         # print(categories)
+#         institutions = set(Institution.objects.filter(categories__in=categories))
+#         # print('Institutions ->', set(institutions))
+#         return render(request, 'form.html', {'categories': categories,
+#                                              'institutions': institutions
+#                                              })

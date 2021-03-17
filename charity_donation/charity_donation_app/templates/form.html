@@ -62,12 +62,12 @@
                 <h3>Zaznacz co chcesz oddać:</h3>
 
                 {% for cat in categories %}
-                <div class="form-group form-group--checkbox">
+                <div class="form-group form-group--checkbox org1">
                     <label>
-                        <input
+                        <input class="category-things"
                                 type="checkbox"
-                                name="{{ cat.id }}"
-                                value="{{ cat.name }}"
+                                name="category"
+                                value="{{ cat.id }}"
                         />
                         <span class="checkbox"></span>
                         <span class="description">{{ cat.name }}</span>
@@ -88,7 +88,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <input type="number" name="bags" step="1" min="1"/>
+                        <input class="bags-value" type="number" name="bags" step="1" min="1"/>
                     </label>
                 </div>
 
@@ -105,7 +105,7 @@
 
                 {% for inst in institutions %}
 
-                <div class="form-group form-group--checkbox">
+                <div class="form-group form-group--checkbox org">  <!-- klasa org dodana na konsultacjach -->
                     <label>
                         <input type="radio" name="organization" value="old"/>
                         <span class="checkbox radio"></span>
