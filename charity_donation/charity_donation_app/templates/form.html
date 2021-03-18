@@ -64,10 +64,11 @@
                 {% for cat in categories %}
                 <div class="form-group form-group--checkbox org1">
                     <label>
-                        <input class="category-things"
+                        <input class="category-element"
                                 type="checkbox"
                                 name="category"
                                 value="{{ cat.id }}"
+
                         />
                         <span class="checkbox"></span>
                         <span class="description">{{ cat.name }}</span>
@@ -105,16 +106,16 @@
 
                 {% for inst in institutions %}
 
-                <div class="form-group form-group--checkbox org">  <!-- klasa org dodana na konsultacjach -->
+                <div class="form-group form-group--checkbox org" data-id="{{ inst.categories_id }}">  <!-- klasa org dodana na konsultacjach -->
                     <label>
-                        <input type="radio" name="organization" value="old"/>
+                        <input class="organisation" type="radio" name="organisation" value="{{ inst }}"/>
                         <span class="checkbox radio"></span>
                         <span class="description">
-                  <div class="title">{{ inst.get_type_display }}: “{{ inst.name }}”</div>
-                  <div class="subtitle">
-                    Cel i misja: {{ inst.description }}
-                  </div>
-                </span>
+                          <div class="title">{{ inst.get_type_display }}: “{{ inst.name }}”</div>
+                          <div class="subtitle">
+                            Cel i misja: {{ inst.description }}
+                          </div>
+                        </span>
                     </label>
                 </div>
 
@@ -179,7 +180,7 @@
                 </div>
             </div>
 
-            <!-- STEP 6 -->
+            <!-- STEP 5 -->
             <div data-step="5">
                 <h3>Podsumowanie Twojej darowizny</h3>
 
@@ -190,7 +191,7 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
+                                ><span class="bags"></span> worki ubrań w dobrym stanie dla dzieci</span
                                 >
                             </li>
 

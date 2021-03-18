@@ -213,28 +213,67 @@ document.addEventListener("DOMContentLoaded", function() {
         });
       });
 
-      // testing
-      let things = []
+      // My code
+      // Create table with checked categories
+      let checked_categories_list = []
 
-      function doalert() {
+      function categories_table() {
         if (this.checked) {
-          things.push(this.value)
-          console.log(things)
+          checked_categories_list.push(this.value)
+          console.log(checked_categories_list)
         } else {
-          let index = things.indexOf(this.value)
+          let index = checked_categories_list.indexOf(this.value)
           if(index > -1) {
-            things.splice(index, 1)
+            checked_categories_list.splice(index, 1)
           }
-          console.log(things)
+          console.log(checked_categories_list)
+        }
+      }
+      // Catch all categories and add event to each
+      let all_categories_list = document.querySelectorAll('.category-element')
+
+      all_categories_list.forEach(thing => {
+        thing.addEventListener('change', categories_table)
+      })
+
+      // Catch quantity of bags
+      let bags_quantity = document.querySelector('.bags-value')
+
+      function return_bags_quantity() {
+        console.log('Changed bags quantity:')
+        console.log(bags_quantity.value)
+        let bags = document.querySelector('.bags')
+        bags.innerHTML = bags_quantity.value
+      }
+
+      bags_quantity.addEventListener('change', return_bags_quantity)
+
+      // Chose the organisation
+      // let all_organisations_list = document.querySelectorAll('.org')
+      // let matching_organisations = []
+      // function set_matching_organisations = all_organisations_list.forEach(org => {
+      //   if(checked_categories_list.every(category = org.dataset.id.indexOf(category) >= 0) {
+      //     matching_organisations.push(org)
+      //   })
+      // })
+
+      function choose_organisation() {
+        let chosen_organisation = ''
+        if (this.checked) {
+          chosen_organisation = this.value
+          console.log('Chosen organisation:')
+          console.log(chosen_organisation)
         }
       }
 
-      let things_list = document.querySelectorAll('.category-things')
+      let all_organisations = document.querySelectorAll('.organisation')
 
-      things_list.forEach(thing => {
-        thing.addEventListener('change', doalert)
+      all_organisations.forEach(org => {
+        org.addEventListener('change', choose_organisation)
       })
 
+
+      // Existing code
       // Previous step
       this.$prev.forEach(btn => {
         btn.addEventListener("click", e => {

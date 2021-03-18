@@ -33,8 +33,13 @@ class AddDonation(LoginRequiredMixin, View):
         # categories = Category.objects.all()
         categories = Category.objects.all()
         # print(categories)
-        institutions = set(Institution.objects.filter(categories__in=categories))
-        # print('Institutions ->', set(institutions))
+        institutions = Institution.objects.all()
+        # institutions = set(Institution.objects.filter(categories__in=categories))
+        institution = Institution.objects.get(id=1).categories.all()
+        institution_cat = [inst.categories.all() for inst in institutions]
+        print('All Institutions cat->', institution_cat)
+        print('One Institution categories ->', institution)
+        print([inst.id for inst in institution])
         return render(request, 'form.html', {'categories': categories,
                                              'institutions': institutions
                                              })
