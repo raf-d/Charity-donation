@@ -263,6 +263,8 @@ document.addEventListener("DOMContentLoaded", function() {
           chosen_organisation = this.value
           console.log('Chosen organisation:')
           console.log(chosen_organisation)
+          let chosen_org = document.querySelector('.chosen-organisation')
+          chosen_org.innerText = chosen_organisation
         }
       }
 
@@ -271,6 +273,71 @@ document.addEventListener("DOMContentLoaded", function() {
       all_organisations.forEach(org => {
         org.addEventListener('change', choose_organisation)
       })
+
+      // Step 4
+      let street = document.querySelector('.street')
+      let confirmed_street = document.querySelector('.confirmed-street')
+
+      street.addEventListener('input', chose_street)
+
+      function chose_street() {
+        confirmed_street.innerText = street.value
+      }
+
+      let city = document.querySelector('.city')
+      let confirmed_city = document.querySelector('.confirmed-city')
+
+      city.addEventListener('input', chose_city)
+
+      function chose_city() {
+        confirmed_city.innerText = city.value
+      }
+
+      let zipcode = document.querySelector('.zipcode')
+      let confirmed_zipcode = document.querySelector('.confirmed-zipcode')
+
+      zipcode.addEventListener('input', chose_zipcode)
+
+      function chose_zipcode() {
+        confirmed_zipcode.innerText = zipcode.value
+      }
+
+      let phone = document.querySelector('.phone')
+      let confirmed_phone = document.querySelector('.confirmed-phone')
+
+      phone.addEventListener('input', chose_phone)
+
+      function chose_phone() {
+        confirmed_phone.innerText = phone.value
+      }
+
+      let date = document.querySelector('.date')
+      let confirmed_date = document.querySelector('.confirmed-date')
+
+      date.addEventListener('input', chose_date)
+
+      function chose_date() {
+        confirmed_date.innerText = date.value
+      }
+
+      let time = document.querySelector('.time')
+      let confirmed_time = document.querySelector('.confirmed-time')
+
+      time.addEventListener('input', chose_time)
+
+      function chose_time() {
+        confirmed_time.innerText = time.value
+      }
+
+      let more_info = document.querySelector('.more_info')
+      let confirmed_info = document.querySelector('.confirmed-info')
+
+      more_info.addEventListener('input', chose_info)
+
+      function chose_info() {
+        confirmed_info.innerText = more_info.value
+      }
+
 
 
       // Existing code

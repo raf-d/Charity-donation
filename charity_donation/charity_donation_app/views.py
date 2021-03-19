@@ -4,7 +4,7 @@ from django.views import View
 
 from .mixins import AjaxFormMixin
 from .models import Category, Donation, Institution
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, DonationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -28,21 +28,21 @@ class LandingPage(View):
                                               })
 
 
-class AddDonation(LoginRequiredMixin, View):
-    def get(self, request):
-        # categories = Category.objects.all()
-        categories = Category.objects.all()
-        # print(categories)
-        institutions = Institution.objects.all()
-        # institutions = set(Institution.objects.filter(categories__in=categories))
-        institution = Institution.objects.get(id=1).categories.all()
-        institution_cat = [inst.categories.all() for inst in institutions]
-        print('All Institutions cat->', institution_cat)
-        print('One Institution categories ->', institution)
-        print([inst.id for inst in institution])
-        return render(request, 'form.html', {'categories': categories,
-                                             'institutions': institutions
-                                             })
+# class AddDonation(LoginRequiredMixin, View):
+#     def get(self, request):
+#         # categories = Category.objects.all()
+#         categories = Category.objects.all()
+#         # print(categories)
+#         institutions = Institution.objects.all()
+#         # institutions = set(Institution.objects.filter(categories__in=categories))
+#         institution = Institution.objects.get(id=1).categories.all()
+#         institution_cat = [inst.categories.all() for inst in institutions]
+#         print('All Institutions cat->', institution_cat)
+#         print('One Institution categories ->', institution)
+#         print([inst.id for inst in institution])
+#         return render(request, 'form.html', {'categories': categories,
+#                                              'institutions': institutions
+#                                              })
 
 
 class Login(View):
@@ -101,13 +101,39 @@ class UserView(View):
         return render(request, 'user.html', {'user': user, 'donations': donations})
 
 
-# class AddDonation(LoginRequiredMixin, AjaxFormMixin, View):
-#     def get(self, request):
-#         # categories = Category.objects.all()
-#         categories = Category.objects.all()
-#         # print(categories)
-#         institutions = set(Institution.objects.filter(categories__in=categories))
-#         # print('Institutions ->', set(institutions))
-#         return render(request, 'form.html', {'categories': categories,
-#                                              'institutions': institutions
-#                                              })
+class AddDonation(LoginRequiredMixin, View):
+    def get(self, request):
+        # form = DonationForm()
+        categories = Category.objects.all()
+        institutions = Institution.objects.all()
+        return render(request, 'form.html', {'categories': categories,
+                                             'institutions': institutions
+                                             })
+
+    def post(self, request):
+        # quantity = request.POST['bags']
+        # categories = request.POST['category']
+        # institution = request.POST['organisation']
+        # address = request.POST['address']
+        # phone_number = request.POST['phone']
+        # city = request.POST['city']
+        # zip_code = request.POST['zipcode']
+        # pick_up_date = request.POST['date']
+        # pick_up_time = request.POST['time']
+        # pick_up_comment = request.POST['more_info']
+        # user = request.user
+        # donation = Donation.objects.create(
+        #     quantity=quantity,
+        #     categories=categories,
+        #     institution=institution,
+        #     address=address,
+        #     phone_number=int(phone_number),
+        #     city=city,
+        #     zip_code=zip_code,
+        #     pick_up_date=pick_up_date,
+        #     pick_up_time=pick_up_time,
+        #     pick_up_comment=pick_up_comment,
+        #     user=user,
+        # )
+        # donation.save()
+        return render(request, 'form-confirmation.html')

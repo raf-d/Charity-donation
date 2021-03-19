@@ -1,6 +1,8 @@
 import django.forms as forms
 from django.core.exceptions import ValidationError
 
+from charity_donation_app.models import Donation
+
 
 class RegisterForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Imię'}), label='')
@@ -19,3 +21,10 @@ class RegisterForm(forms.Form):
 class LoginForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}), label='')
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Hasło'}), label='')
+
+
+class DonationForm(forms.ModelForm):
+    class Meta:
+        model = Donation
+        fields = '__all__'
+

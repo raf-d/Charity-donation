@@ -32,7 +32,6 @@ class Institution(models.Model):
         return ';'.join(categories_id_list)
 
 
-
 class Donation(models.Model):
     quantity = models.IntegerField()
     categories = models.ManyToManyField(Category)
