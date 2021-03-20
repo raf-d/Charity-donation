@@ -216,15 +216,23 @@ document.addEventListener("DOMContentLoaded", function() {
       // My code
       // Create table with checked categories
       let checked_categories_list = []
+      let button1 = document.querySelector('.step1')
+      button1.disabled = true
 
       function categories_table() {
         if (this.checked) {
           checked_categories_list.push(this.value)
           console.log(checked_categories_list)
+          if (checked_categories_list.length !== 0) {
+            button1.disabled = false
+          }
         } else {
           let index = checked_categories_list.indexOf(this.value)
           if(index > -1) {
             checked_categories_list.splice(index, 1)
+          }
+          if (checked_categories_list.length === 0){
+            button1.disabled = true
           }
           console.log(checked_categories_list)
         }
@@ -236,14 +244,18 @@ document.addEventListener("DOMContentLoaded", function() {
         thing.addEventListener('change', categories_table)
       })
 
+
       // Catch quantity of bags
       let bags_quantity = document.querySelector('.bags-value')
+      let button2 = document.querySelector('.step2')
+      button2.disabled = true
 
       function return_bags_quantity() {
         console.log('Changed bags quantity:')
         console.log(bags_quantity.value)
         let bags = document.querySelector('.bags')
         bags.innerHTML = bags_quantity.value
+        button2.disabled = bags_quantity.value <= 0;
       }
 
       bags_quantity.addEventListener('change', return_bags_quantity)
@@ -257,10 +269,14 @@ document.addEventListener("DOMContentLoaded", function() {
       //   })
       // })
 
+      let button3 = document.querySelector('.step3')
+      button3.disabled = true
+
       function choose_organisation() {
         let chosen_organisation = ''
         if (this.checked) {
           chosen_organisation = this.value
+          button3.disabled = false
           console.log('Chosen organisation:')
           console.log(chosen_organisation)
           let chosen_org = document.querySelector('.chosen-organisation')
@@ -275,6 +291,8 @@ document.addEventListener("DOMContentLoaded", function() {
       })
 
       // Step 4
+      let button4 = document.querySelector('.step4')
+      button4.disabled = true
       let street = document.querySelector('.street')
       let confirmed_street = document.querySelector('.confirmed-street')
 
@@ -282,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       function chose_street() {
         confirmed_street.innerText = street.value
+        check_valid()
       }
 
       let city = document.querySelector('.city')
@@ -291,6 +310,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       function chose_city() {
         confirmed_city.innerText = city.value
+        check_valid()
       }
 
       let zipcode = document.querySelector('.zipcode')
@@ -300,6 +320,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       function chose_zipcode() {
         confirmed_zipcode.innerText = zipcode.value
+        check_valid()
       }
 
       let phone = document.querySelector('.phone')
@@ -309,6 +330,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       function chose_phone() {
         confirmed_phone.innerText = phone.value
+        check_valid()
       }
 
       let date = document.querySelector('.date')
@@ -318,6 +340,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       function chose_date() {
         confirmed_date.innerText = date.value
+        check_valid()
       }
 
       let time = document.querySelector('.time')
@@ -327,6 +350,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       function chose_time() {
         confirmed_time.innerText = time.value
+        check_valid()
       }
 
       let more_info = document.querySelector('.more_info')
@@ -336,8 +360,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
       function chose_info() {
         confirmed_info.innerText = more_info.value
+        check_valid()
       }
 
+      function check_valid() {
+        if (street.value !=='' & city.value !=='' & zipcode.value !=='' & phone.value !=='' &
+            date.value !=='' & time.value !=='' & more_info.value !=='') {
+          button4.disabled = false
+        }
+      }
 
 
       // Existing code
