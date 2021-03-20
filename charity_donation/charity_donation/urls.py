@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from charity_donation_app.views import LandingPage, AddDonation, Login, Logout, Register, UserView
+from charity_donation_app.views import LandingPage, AddDonation, Login, Logout, Register, UserView, AddCategory
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,5 @@ urlpatterns = [
     path('logout/', Logout.as_view(), name='logout'),
     path('register/', Register.as_view(), name='register'),
     path('user/<int:user_id>/', UserView.as_view(), name='user'),
-
+    path('test/', AddCategory.as_view())
 ]

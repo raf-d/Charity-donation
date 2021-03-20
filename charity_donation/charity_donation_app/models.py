@@ -47,3 +47,7 @@ class Donation(models.Model):
 
     def __str__(self):
         return f'{self.quantity} bags picked up {self.pick_up_date}'
+
+
+# class CheckValid(models.Model):
+#
