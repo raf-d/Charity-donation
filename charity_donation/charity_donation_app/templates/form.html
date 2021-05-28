@@ -69,6 +69,7 @@
                                 type="checkbox"
                                 name="category"
                                 value="{{ cat.pk }}"
+                                data-name="{{ cat.name }}"
 
                         />
                         <span class="checkbox"></span>
@@ -190,15 +191,18 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text"
-                                ><span class="bags"></span> worki ubrań w dobrym stanie dla dzieci</span
                                 >
+                                    <span class="bags"></span> worki zawierające
+                                    <span class="chosen-categories"></span>
+
+                                </span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
                                 <span class="summary--text"
-                                >Dla fundacji "<span class="chosen-organisation"></span>" w Warszawie</span
-                                >
+                                >Dla fundacji "<span class="chosen-organisation"></span>"</span>
+
                             </li>
                         </ul>
                     </div>

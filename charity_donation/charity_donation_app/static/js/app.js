@@ -218,16 +218,23 @@ document.addEventListener("DOMContentLoaded", function() {
       let checked_categories_list = []
       let button1 = document.querySelector('.step1')
       button1.disabled = true
+      let chosen_categories = document.querySelector('.chosen-categories')
 
       function categories_table() {
+                  let categoria = {
+              id:this.value,
+              name:this.dataset.name
+          };
         if (this.checked) {
-          checked_categories_list.push(this.value)
+
+
+          checked_categories_list.push(categoria);
           console.log(checked_categories_list)
           if (checked_categories_list.length !== 0) {
             button1.disabled = false
           }
         } else {
-          let index = checked_categories_list.indexOf(this.value)
+          let index = checked_categories_list.indexOf(categoria);
           if(index > -1) {
             checked_categories_list.splice(index, 1)
           }
@@ -236,6 +243,9 @@ document.addEventListener("DOMContentLoaded", function() {
           }
           console.log(checked_categories_list)
         }
+        // do poprawy
+        chosen_categories.innerText = ''
+        checked_categories_list.forEach(category => chosen_categories.innerText += category.name + ', ')
       }
       // Catch all categories and add event to each
       let all_categories_list = document.querySelectorAll('.category-element')

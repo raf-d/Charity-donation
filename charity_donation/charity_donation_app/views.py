@@ -110,36 +110,70 @@ class AddDonation(LoginRequiredMixin, View):
                                              'institutions': institutions
                                              })
 
+    # def post(self, request):
+    #     quantity = request.POST['bags']
+    #     categories = request.POST.getlist('category')
+    #     categories = Category.objects.filter(id__in=categories)
+    #     institution_name = request.POST['organisation']
+    #     institution = Institution.objects.get(name=institution_name)
+    #     address = request.POST['address']
+    #     phone_number = request.POST['phone']
+    #     city = request.POST['city']
+    #     zip_code = request.POST['postcode']
+    #     pick_up_date = request.POST['date']
+    #     pick_up_time = request.POST['time']
+    #     pick_up_comment = request.POST['more_info']
+    #     user = request.user
+    #     donation = Donation.objects.create(
+    #         quantity=quantity,
+    #         # categories=categories,
+    #         institution=institution,
+    #         address=address,
+    #         phone_number=int(phone_number),
+    #         city=city,
+    #         zip_code=zip_code,
+    #         pick_up_date=pick_up_date,
+    #         pick_up_time=pick_up_time,
+    #         pick_up_comment=pick_up_comment,
+    #         user=user,
+    #     )
+    #     donation.categories.set(categories)
+    #     donation.save()
+    #     return render(request, 'form-confirmation.html')
+
     def post(self, request):
-        quantity = request.POST['bags']
-        categories = request.POST.getlist('category')
-        categories = Category.objects.filter(id__in=categories)
-        institution_name = request.POST['organisation']
-        institution = Institution.objects.get(name=institution_name)
-        address = request.POST['address']
-        phone_number = request.POST['phone']
-        city = request.POST['city']
-        zip_code = request.POST['postcode']
-        pick_up_date = request.POST['date']
-        pick_up_time = request.POST['time']
-        pick_up_comment = request.POST['more_info']
-        user = request.user
-        donation = Donation.objects.create(
-            quantity=quantity,
-            # categories=categories,
-            institution=institution,
-            address=address,
-            phone_number=int(phone_number),
-            city=city,
-            zip_code=zip_code,
-            pick_up_date=pick_up_date,
-            pick_up_time=pick_up_time,
-            pick_up_comment=pick_up_comment,
-            user=user,
-        )
-        donation.categories.set(categories)
-        donation.save()
-        return render(request, 'form-confirmation.html')
+        form = DonationForm(request.POST)
+        if form.is_valid():
+        #     dalej
+            quantity = request.POST['bags']
+            categories = request.POST.getlist('category')
+            categories = Category.objects.filter(id__in=categories)
+            institution_name = request.POST['organisation']
+            institution = Institution.objects.get(name=institution_name)
+            address = request.POST['address']
+            phone_number = request.POST['phone']
+            city = request.POST['city']
+            zip_code = request.POST['postcode']
+            pick_up_date = request.POST['date']
+            pick_up_time = request.POST['time']
+            pick_up_comment = request.POST['more_info']
+            user = request.user
+            donation = Donation.objects.create(
+                quantity=quantity,
+                # categories=categories,
+                institution=institution,
+                address=address,
+                phone_number=int(phone_number),
+                city=city,
+                zip_code=zip_code,
+                pick_up_date=pick_up_date,
+                pick_up_time=pick_up_time,
+                pick_up_comment=pick_up_comment,
+                user=user,
+            )
+            donation.categories.set(categories)
+            donation.save()
+            return render(request, 'form-confirmation.html')
 
 
 class AddCategory(View):
